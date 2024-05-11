@@ -1,7 +1,7 @@
 import logo from '../../public/images/volunteer.png'
 const Footer = () => {
   return (
-    <footer className="px-4 divide-y dark:bg-gray-100 dark:text-gray-800 mt-16 border-[2px]">
+    <footer className="px-4 divide-y dark:bg-gray-100 dark:text-gray-800 mt-16 border-[2px] font-roboto">
       <div className="container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
         <div className="lg:w-1/3">
           <a
