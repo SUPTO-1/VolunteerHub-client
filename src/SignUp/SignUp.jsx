@@ -83,7 +83,7 @@ const SignUp = () => {
         </div>
       </div>
         <div className="flex-1 md:px-16 py-10  ">
-          <h2 className="text-3xl text-center font-poppins mt-4 lg:mt-0 font-bold">
+          <h2 className="text-3xl text-center text-purple-950 font-poppins mt-4 lg:mt-0 font-bold">
             Register Now
           </h2>
           <form onSubmit={handleRegister} className="card-body">
@@ -94,7 +94,7 @@ const SignUp = () => {
               <input
                 type="text"
                 placeholder="Enter Your Name"
-                className="input input-bordered"
+                className="rounded-lg text-xl input-bordered border-purple-500 border-2 "
                 name="name"
                 required
               />
@@ -106,7 +106,7 @@ const SignUp = () => {
               <input
                 type="email"
                 placeholder="Enter Your Email"
-                className="input input-bordered"
+                className="rounded-lg text-xl input-bordered border-purple-500 border-2 "
                 name="email"
                 required
               />
@@ -118,7 +118,7 @@ const SignUp = () => {
               <input
                 type="text"
                 placeholder="Give Photo Url"
-                className="input input-bordered"
+                className="rounded-lg text-xl input-bordered border-purple-500 border-2 "
                 name="photo"
                 required
               />
@@ -130,7 +130,7 @@ const SignUp = () => {
               <input
                 type="password"
                 placeholder="Enter Your Password"
-                className="input input-bordered"
+                className="rounded-lg text-xl input-bordered border-purple-500 border-2 "
                 name="password"
                 required
               />

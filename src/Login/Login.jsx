@@ -105,7 +105,7 @@ const Login = () => {
         </div>
       </div>
       <div className="flex-1 md:px-16 md:py-16">
-        <h2 className="text-3xl text-center font-poppins mt-4 lg:mt-0 font-bold">
+        <h2 className="text-3xl text-center font-poppins mt-4 text-purple-900 lg:mt-0 font-bold">
           LogIn Now
         </h2>
         <form onSubmit={handleLogin} className="card-body">
@@ -116,7 +116,7 @@ const Login = () => {
             <input
               type="email"
               placeholder="Enter Your Email"
-              className="input input-bordered"
+              className="rounded-lg text-xl input-bordered border-2 border-purple-500"
               name="email"
               required
             />
@@ -128,7 +128,7 @@ const Login = () => {
             <input
               type="password"
               placeholder="Enter Your Password"
-              className="input input-bordered"
+              className="rounded-lg text-xl input-bordered border-purple-500 border-2"
               name="password"
               required
             />
