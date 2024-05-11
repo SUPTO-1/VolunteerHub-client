@@ -1,19 +1,70 @@
+import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-
+import { AuthContext } from "../Providers/AuthProvider";
+import Swal from "sweetalert2";
 const Navbar = () => {
+  const { user, logOut, loading } = useContext(AuthContext);
+  const [displayName, setDisplayName] = useState("");
+  const [photoURL, setPhotoURL] = useState("");
+  useEffect(() => {
+    if (user) {
+      setDisplayName(user.displayName);
+      setPhotoURL(user.photoURL);
+    } else {
+      setDisplayName("");
+      setPhotoURL("");
+    }
+  }, [user]);
+  if (loading) {
+    return <progress className="progress w-56"></progress>;
+  }
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        Swal.fire({
+          title: "success!",
+          text: "User logged in successfully",
+          icon: "success",
+          confirmButtonText: "Okay",
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        Swal.fire({
+          title: "error!",
+          text: "Something went wrong!Try Again.",
+          icon: "error",
+          confirmButtonText: "Okay",
+        });
+      });
+  };
   const links = (
     <>
       <li className="text-xl">
-        <NavLink to="/">Home</NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? " underline decoration-wavy decoration-2" : ""
+          }
+          to="/"
+        >
+          Home
+        </NavLink>
       </li>
       <li className="text-xl">
-        <NavLink to="/need">Need Volunteer</NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? " underline decoration-wavy decoration-2" : ""
+          }
+          to="/need"
+        >
+          Need Volunteer
+        </NavLink>
       </li>
     </>
   );
   return (
     <div className="font-roboto md:m-4 md:mt-2 shadow-xl rounded-md">
-      <div className="navbar py-4 lg:p-8 rounded-lg">
+      <div className="navbar lg:p-8 rounded-lg">
         <div className="navbar-start">
           <div className="dropdown">
             <div
@@ -23,7 +74,7 @@ const Navbar = () => {
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
+                className="h-5 w-5 md:h-5 md:w-5"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -43,24 +94,44 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <a className="btn btn-ghost font-roboto text-sm md:text-3xl font-medium md:font-bold">
+          <h2 className="btn btn-ghost font-roboto pl-0 text-sm md:text-3xl font-medium md:font-bold">
             VolunteerHub
-          </a>
+          </h2>
         </div>
-        <div className="navbar-start hidden lg:flex">
+        <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal md:px-1">{links}</ul>
         </div>
-        <div className="">
-          <Link to="/login">
-            <a className="btn  text-xs md:text-xl border-none shadow-xl">
-              Login
-            </a>
-          </Link>
-          <Link to="/signup">
-            <a className="btn  text-xs md:text-xl md:ml-4 border-none shadow-xl">
-              Register
-            </a>
-          </Link>
+        <div className="navbar-end">
+          {!user ? (
+            <div className="flex navbar-end">
+              <Link to="/login">
+                <a className="btn  text-xs md:text-xl border-none shadow-xl">
+                  Login
+                </a>
+              </Link>
+              <Link to="/signup">
+                <a className="btn  text-xs md:text-xl md:ml-4 border-none shadow-xl">
+                  Register
+                </a>
+              </Link>
+            </div>
+          ) : (
+            <div className=" flex">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar tooltip tooltip-bottom"
+                data-tip={displayName}
+              >
+                <div className="w-10 rounded-full">
+                  <img alt="" src={photoURL} />
+                </div>
+              </div>
+              <Link onClick={handleLogOut}>
+                <a className="btn md:w-[100px]">Logout</a>
+              </Link>
+            </div>
+          )}
 
           <div className="ml-2 md:mr-4">
             <label className="cursor-pointer grid place-items-center">
