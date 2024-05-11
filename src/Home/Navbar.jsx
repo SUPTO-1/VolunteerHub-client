@@ -16,7 +16,7 @@ const Navbar = () => {
     }
   }, [user]);
   if (loading) {
-    return <progress className="progress w-56"></progress>;
+    return <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-purple-800 text-center flex justify-center items-center mx-auto mt-24"></div>;
   }
   const handleLogOut = () => {
     logOut()
@@ -60,6 +60,24 @@ const Navbar = () => {
           Need Volunteer
         </NavLink>
       </li>
+      {user && (
+        <div className="dropdown">
+          <div tabIndex={0} role="button" className="text-xl mt-2">
+           My Profile
+          </div>
+          <ul
+            tabIndex={0}
+            className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+          >
+            <li>
+              <Link to='/add'>Add Volunteer Post</Link>
+            </li>
+            <li>
+              <Link to='/manage'>Manage My Post</Link>
+            </li>
+          </ul>
+        </div>
+      )}
     </>
   );
   return (
@@ -116,15 +134,17 @@ const Navbar = () => {
               </Link>
             </div>
           ) : (
-            <div className=" flex">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar tooltip tooltip-bottom"
-                data-tip={displayName}
-              >
-                <div className="w-10 rounded-full">
-                  <img alt="" src={photoURL} />
+            <div className="flex">
+              <div className="navbar-end">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar tooltip tooltip-bottom"
+                  data-tip={displayName}
+                >
+                  <div className="w-10 rounded-full">
+                    <img alt="" src={photoURL} />
+                  </div>
                 </div>
               </div>
               <Link onClick={handleLogOut}>
