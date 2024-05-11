@@ -64,7 +64,29 @@ const Login = () => {
   };
 
 
-
+  const handleGithub = () =>
+    {
+      githubSignIn(githubProvider)
+      .then(()=>{
+        // const loggedUser = result.user;
+        // console.log(loggedUser);
+        Swal.fire({
+          title: "success!",
+          text: "User logged in successfully",
+          icon: "success",
+          confirmButtonText: "Okay",
+        });
+      })
+      .catch((error)=>{
+        console.log(error);
+        Swal.fire({
+          title: "error!",
+          text: "Something went wrong!Try Again.",
+          icon: "error",
+          confirmButtonText: "Okay",
+        });
+      })
+    }
   return (
     <div className=" mx-2 md:mx-8 md:mt-24 font-poppins lg:flex gap-5 border-2 rounded-lg shadow-xl">
       <div className="flex-1 bg-purple-500 md:rounded-r-[150px] rounded-l-lg">
