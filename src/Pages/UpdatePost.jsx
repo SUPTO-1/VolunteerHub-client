@@ -1,6 +1,5 @@
-import { useContext } from 'react';
+
 import joinUs from '../../public/images/update.jpg';
-import { AuthContext } from '../Providers/AuthProvider';
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import Swal from 'sweetalert2'
@@ -8,8 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useLoaderData } from 'react-router-dom';
 const UpdatePost = () => {
     const post = useLoaderData();
-    const {thumbnail, postTitle, date, volunteers, category, location, description} = post;
-    const {user} = useContext(AuthContext);
+    const {_id,date,thumbnail, organizationName, organizationEmail, postTitle, volunteers, category, location, description} = post;
     const [startDate, setStartDate] = useState(new Date());
     const handleUpdate = (e) => {
         e.preventDefault();
@@ -37,7 +35,29 @@ const UpdatePost = () => {
         };
         console.log(newPost);
 
-        //send data to server
+        //update data to server
+
+
+        fetch(`http://localhost:5000/volunteers/${_id}`,{
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newPost)
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+          if(data.modifiedCount > 0){
+            Swal.fire({
+              title: 'success!',
+              text: 'Volunteer post updated successfully',
+              icon: 'success',
+              confirmButtonText: 'Okay'
+            })
+            form.reset();
+          }
+        })
     }
     return (
         <div className="mx-2 md:mx-8 font-roboto mt-24 lg:flex  gap-5 border-2 rounded-lg shadow-xl">
@@ -56,8 +76,8 @@ const UpdatePost = () => {
             </label>
             <input
               type="text"
-              placeholder={user?.displayName}
-              value={user?.displayName}
+              defaultValue={organizationName}
+              value={organizationName}
               className="text-xl input-bordered  bg-[#d5f7e7] border-[#59e4a8] border-2 border-t-0 border-x-0"
               name="organizationName"
               readOnly
@@ -69,8 +89,8 @@ const UpdatePost = () => {
             </label>
             <input
               type="text"
-              value={user?.email}
-              placeholder={user?.email}
+              value={organizationEmail}
+              defaultValue={organizationEmail}
               className=" text-xl input-bordered bg-[#d5f7e7] border-[#59e4a8] border-2 border-t-0 border-x-0"
               name="organizationEmail"
               readOnly
@@ -84,10 +104,9 @@ const UpdatePost = () => {
             </label>
             <input
               type="text"
-              placeholder={thumbnail}
+              defaultValue={thumbnail}
               className="text-xl bg-[#d5f7e7] border-[#59e4a8] border-2 border-t-0 border-x-0"
               name="thumbnail"
-              required
             />
           </div>
           </div>
@@ -98,10 +117,9 @@ const UpdatePost = () => {
             </label>
             <input
               type="text"
-              placeholder={postTitle}
+              defaultValue={postTitle}
               className="text-xl input-bordered  bg-[#d5f7e7] border-[#59e4a8] border-2 border-t-0 border-x-0"
               name="postTitle"
-              required
             />
           </div>
           <div className="form-control w-full mx-auto">
@@ -110,10 +128,9 @@ const UpdatePost = () => {
             </label>
             <input
               type="text"
-              placeholder={category}
+              defaultValue={category}
               className=" text-xl input-bordered bg-[#d5f7e7] border-[#59e4a8] border-2 border-t-0 border-x-0"
               name="category"
-              required
             />
           </div>
           </div>
@@ -124,10 +141,9 @@ const UpdatePost = () => {
             </label>
             <input
               type="text"
-              placeholder={volunteers}
+              defaultValue={volunteers}
               className="text-xl input-bordered  bg-[#d5f7e7] border-[#59e4a8] border-2 border-t-0 border-x-0"
               name="volunteers"
-              required
             />
           </div>
           <div className="form-control w-full mx-auto">
@@ -136,7 +152,7 @@ const UpdatePost = () => {
             </label>
             <input
               type="text"
-              placeholder={location}
+              defaultValue={location}
               className=" text-xl input-bordered bg-[#d5f7e7] border-[#59e4a8] border-2 border-t-0 border-x-0"
               name="location"
             />
@@ -145,7 +161,7 @@ const UpdatePost = () => {
             <label className="label">
               <span className="label-text text-lg">Deadline</span>
             </label>
-            <DatePicker name='date' className='bg-[#d5f7e7] w-full border-x-0 border-t-0 border-[#59e4a8] border-2 mt-1' selected={startDate} onChange={(date) => setStartDate(date)} />
+            <DatePicker defaultValue={date} name='date' className='bg-[#d5f7e7] w-full border-x-0 border-t-0 border-[#59e4a8] border-2 mt-1' selected={startDate} onChange={(date) => setStartDate(date)} />
           </div>
           </div>
           <div className="form-control w-full mx-auto">
@@ -154,7 +170,7 @@ const UpdatePost = () => {
             </label>
             <input
               type="text"
-              placeholder={description}
+              defaultValue={description}
               className=" text-xl input-bordered bg-[#d5f7e7] border-[#59e4a8] border-2 border-t-0 border-x-0"
               name="description"
             />
