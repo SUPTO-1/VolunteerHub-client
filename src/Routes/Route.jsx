@@ -47,6 +47,11 @@ const routes = createBrowserRouter([
                 path:'/be-a-volunteer/:id',
                 element:<BeAVolunteer></BeAVolunteer>,
                 loader:({params}) => fetch(`http://localhost:5000/volunteers/${params.id}`)
+            },
+            {
+                path:'/manage/:email',
+                element:<ManageVolunteer></ManageVolunteer>,
+                loader:({params}) => fetch(`http://localhost:5000/volunteers/user/${params.email}`)
             }
         ]
     }

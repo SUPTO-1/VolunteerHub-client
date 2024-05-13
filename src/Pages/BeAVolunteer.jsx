@@ -62,6 +62,13 @@ const BeAVolunteer = () => {
             form.reset();
           }
         })
+
+
+        // update volunteer database
+
+
+
+
     }
     return (
         <div className="mx-2 md:mx-8 font-roboto mt-24 lg:flex  gap-5 border-2 rounded-lg shadow-xl">
