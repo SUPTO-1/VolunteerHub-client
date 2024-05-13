@@ -1,10 +1,12 @@
 import { IoLocationOutline } from "react-icons/io5";
 import { CiTimer } from "react-icons/ci";
+import { Link } from "react-router-dom";
 const NeedCard = ({need}) => {
     const {postTitle,thumbnail,description,location,date} = need;
     //console.log(thumbnail);
     return (
-        <div className="p-5 border-2 rounded-lg shadow-lg mb-5 bg-[#f5f5f5]">
+        <div>
+            <div className="p-5 border-2 rounded-lg shadow-lg mb-5 ">
             <div className="flex gap-5">
                <div className="">
                 <img className="h-[150px] w-[150px]" src={thumbnail} alt="" />
@@ -25,7 +27,8 @@ const NeedCard = ({need}) => {
                     <div><p className="text-xl font-semibold">{date}</p></div>
                 </div>
             </div>
-            <button className="btn w-full mt-5 bg-purple-400">Need Post Details Page</button>
+            <Link to={`/details/${need._id}`}><button className="btn w-full mt-5 bg-purple-400">Need Post Details Page</button></Link>
+        </div>
         </div>
     );
 };
