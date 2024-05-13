@@ -1,8 +1,38 @@
 import { IoLocationOutline } from "react-icons/io5";
 import { CiTimer } from "react-icons/ci";
-const MyPost = ({post}) => {
-    const {postTitle,thumbnail,description,location,date} = post;
+import Swal from "sweetalert2";
+const MyPost = ({post,posts,setPosts}) => {
+    const {_id,postTitle,thumbnail,description,location,date} = post;
     //console.log(thumbnail);
+    const handleDelete = (_id) =>{
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/volunteers/${_id}`,{
+                    method:"DELETE"
+                })
+                .then(res=>res.json())
+                .then(data=>{
+                    if(data.deletedCount > 0){
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your Coffee has been deleted.",
+                            icon: "success"
+                          });
+                        const remaining = posts.filter(post => post._id !== _id);
+                        setPosts(remaining);
+                    }
+                })
+            }
+          })
+    }
     return (
         <div>
             <div className="p-2 md:p-5 border-2 rounded-lg shadow-lg mb-5 ">
@@ -27,7 +57,7 @@ const MyPost = ({post}) => {
                 </div>
             </div>
             <div className="flex justify-between mt-5">
-               <button className="btn mt-5 bg-purple-400">Delete</button>
+               <button onClick={()=>handleDelete(_id)} className="btn mt-5 bg-purple-400">Delete</button>
                <button className="btn mt-5 bg-purple-400">Update</button>
             </div>
             
