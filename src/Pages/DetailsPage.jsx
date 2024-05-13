@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { IoLocationOutline } from "react-icons/io5";
 import { CiTimer } from "react-icons/ci";
 import men from '../../public/images/men.png';
@@ -9,7 +9,7 @@ const DetailsPage = () => {
     return (
         <div>
             <h2 className="text-3xl font-semibold text-poppins text-center mt-10">Details of {category}</h2>
-            <div className=" p-2 md:p-5 w-3/4 mx-auto font-montserrat mt-10 border-2 rounded-lg shadow-lg mb-5">
+            <div className=" p-2 md:p-10 w-3/4 mx-auto font-montserrat mt-10 border-2 rounded-lg shadow-lg mb-5">
         <div className="md:flex gap-10">
            <div className="">
             <img className="w-full md:h-[400px] md:w-[400px]" src={thumbnail} alt="" />
@@ -21,7 +21,7 @@ const DetailsPage = () => {
             </div>
             <p className="text-[12px] w-11/12 md:text-xl">{description}</p>
             <div className="mt-6">
-                <h2 className="text-lg md:text-2xl text-gray-700 mb-5 font-semibold">Volunteers:{" "}{volunteers}</h2>
+                <h2 className="text-lg md:text-xl text-gray-700 mb-5 font-semibold">Volunteers Need:{" "}{volunteers}</h2>
             </div>
             <div className="md:flex mt-10 justify-between">
                 <div className="flex gap-2 -ml-2 md:ml-0">
@@ -46,7 +46,7 @@ const DetailsPage = () => {
                 <div><p className="text-sm md:text-xl font-semibold">{date}</p></div>
             </div>
         </div>
-        <button className="btn w-full mt-5 bg-purple-400">Be a Volunteer</button>
+        <Link to={`/be-a-volunteer/${newNeed._id}`}><button className="btn w-full mt-5 bg-purple-400">Be a Volunteer</button></Link>
     </div>
         </div>
     );
