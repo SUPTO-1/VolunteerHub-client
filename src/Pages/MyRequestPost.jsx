@@ -1,23 +1,20 @@
 import { IoLocationOutline } from "react-icons/io5";
 import { CiTimer } from "react-icons/ci";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
-const MyPost = ({post,posts,setPosts}) => {
-   // console.log(post);
-    const {_id,postTitle,thumbnail,description,location,date} = post;
-    //console.log(thumbnail);
-    const handleDelete = (_id) =>{
+const MyRequestPost = ({request , volunteerRequest , setVolunteerRequest}) => {
+    const {_id,postTitle,thumbnail,description,location,status} = request;
+    const handleCancel = (_id) =>{
         Swal.fire({
             title: "Are you sure?",
-            text: "You won't be able to revert this!",
+            text: "You want to cancel it!",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
+            confirmButtonText: "Yes, Cancel it!"
           }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/volunteers/${_id}`,{
+                fetch(`http://localhost:5000/requests/${_id}`,{
                     method:"DELETE"
                 })
                 .then(res=>res.json())
@@ -25,11 +22,11 @@ const MyPost = ({post,posts,setPosts}) => {
                     if(data.deletedCount > 0){
                         Swal.fire({
                             title: "Deleted!",
-                            text: "Your Post has been deleted.",
+                            text: "Cancel Successfully.",
                             icon: "success"
                           });
-                        const remaining = posts.filter(post => post._id !== _id);
-                        setPosts(remaining);
+                        const remaining = volunteerRequest.filter(request => request._id !== _id);
+                        setVolunteerRequest(remaining);
                     }
                 })
             }
@@ -54,18 +51,15 @@ const MyPost = ({post,posts,setPosts}) => {
                     <div><p className="text-sm md:text-xl font-semibold">{location}</p></div>
                 </div>
                 <div className="flex gap-2">
-                    <div><CiTimer className=" text-lg md:text-3xl inline text-purple-500" /></div>
-                    <div><p className="text-sm md:text-xl font-semibold">{date}</p></div>
+                    <div><p className="text-sm md:text-xl font-semibold">{status}</p></div>
                 </div>
             </div>
             <div className="flex justify-between mt-5">
-               <button onClick={()=>handleDelete(_id)} className="btn md:px-10 mt-5 bg-purple-400">Delete</button>
-               <Link to={`/update/${_id}`}><button className="btn md:px-10 mt-5 bg-purple-400">Update</button></Link>
-               <Link to={`/details/${_id}`}><button className="btn md:px-10 mt-5 bg-purple-400">Details</button></Link>
+               <button onClick={()=>handleCancel(_id)} className="btn w-full mt-5 bg-purple-400">Cancel Request</button>
             </div>
         </div>
         </div>
     );
 };
 
-export default MyPost;
+export default MyRequestPost;
