@@ -3,12 +3,13 @@ import NeedCard from "./NeedCard";
 
 const NeedPage = () => {
   const [needs, setNeeds] = useState([]);
-  const [filterSearch, setFilterSearch] = useState("");
+  const [filterSearch, setFilterSearch] = useState([]);
   useEffect(() => {
     fetch("http://localhost:5000/volunteers")
       .then((res) => res.json())
       .then((data) => {
         setNeeds(data);
+        setFilterSearch(data);
       });
   }, []);
   // const handleSearch = (e) => {
