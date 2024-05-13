@@ -1,18 +1,42 @@
 import { useEffect, useState } from "react";
+import NeedCard from "./NeedCard";
 
 const NeedPage = () => {
-    const [needs, setNeeds] = useState([]);
-    useEffect(()=>{
-        fetch('http://localhost:5000/volunteers')
-        .then(res=>res.json())
-        .then(data=>{
-            setNeeds(data)
-        })
-    },[])
+  const [needs, setNeeds] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:5000/volunteers")
+      .then((res) => res.json())
+      .then((data) => {
+        setNeeds(data);
+      });
+  }, []);
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const search = e.target.value;
+    if (
+      search != "All" ||
+      search != "" ||
+      search != undefined ||
+      search != 'all'
+    ) {
+      fetch(`http://localhost:5000/volunteers/search/${search}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setNeeds(data);
+        });
+    }
+    if (search == "") {
+      fetch("http://localhost:5000/volunteers")
+        .then((res) => res.json())
+        .then((data) => {
+          setNeeds(data);
+        });
+    }
+  };
   return (
     <div className="font-poppins">
       <div className="mt-10">
-        <fieldset className="w-full md:ml-[45%] space-y-1  dark:text-gray-800">
+        <fieldset className="w-full ml-[30%] md:ml-[45%] space-y-1  dark:text-gray-800">
           <label htmlFor="Search" className="hidden">
             Search
           </label>
@@ -36,13 +60,21 @@ const NeedPage = () => {
               type="search"
               name="Search"
               placeholder="Search..."
+              onChange={handleSearch}
               className="w-32 py-2 pl-10 text-sm rounded-md sm:w-auto focus:outline-none dark:bg-gray-100 dark:text-gray-800 focus:dark:bg-gray-50 focus:dark:border-violet-600"
             />
           </div>
         </fieldset>
       </div>
       <div>
-        <h1 className="text-3xl mt-10 text-center font-bold">All Available Volunteer Post:{needs.length}</h1>
+        <h1 className="text-3xl mt-10 text-center font-bold mb-6">
+          All Available Volunteer Post
+        </h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 px-6">
+          {needs.map((need) => (
+            <NeedCard key={need._id} need={need}></NeedCard>
+          ))}
+        </div>
       </div>
     </div>
   );
