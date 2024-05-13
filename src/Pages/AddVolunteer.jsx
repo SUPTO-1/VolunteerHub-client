@@ -3,7 +3,7 @@ import joinUs from '../../public/images/needYou.jpg';
 import { AuthContext } from '../Providers/AuthProvider';
 import { useState } from "react";
 import DatePicker from "react-datepicker";
-
+import Swal from 'sweetalert2'
 import "react-datepicker/dist/react-datepicker.css";
 const AddVolunteer = () => {
     const {user} = useContext(AuthContext);
@@ -33,6 +33,29 @@ const AddVolunteer = () => {
           description
         };
         console.log(newPost);
+
+        //send data to server
+
+        fetch('http://localhost:5000/volunteers',{
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newPost)
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+          if(data.insertedId){
+            Swal.fire({
+              title: 'success!',
+              text: 'Volunteer post added successfully',
+              icon: 'success',
+              confirmButtonText: 'Okay'
+            })
+            form.reset();
+          }
+        })
     }
   return (
     <div className="mx-2 md:mx-8 font-roboto mt-24 lg:flex  gap-5 border-2 rounded-lg shadow-xl">
@@ -138,7 +161,7 @@ const AddVolunteer = () => {
           </div>
           <div className="form-control w-full mx-auto">
             <label className="label">
-              <span className="label-text text-lg">Date</span>
+              <span className="label-text text-lg">Deadline</span>
             </label>
             <DatePicker name='date' className='bg-[#d5f7e7] w-full border-x-0 border-t-0 border-[#59e4a8] border-2 mt-1' selected={startDate} onChange={(date) => setStartDate(date)} />
           </div>
