@@ -8,6 +8,7 @@ import ManageVolunteer from "../Pages/ManageVolunteer";
 import AddVolunteer from "../Pages/AddVolunteer";
 import DetailsPage from "../Pages/DetailsPage";
 import BeAVolunteer from "../Pages/BeAVolunteer";
+import UpdatePost from "../Pages/UpdatePost";
 
 const routes = createBrowserRouter([
     {
@@ -52,6 +53,11 @@ const routes = createBrowserRouter([
                 path:'/manage/:email',
                 element:<ManageVolunteer></ManageVolunteer>,
                 loader:({params}) => fetch(`http://localhost:5000/volunteers/user/${params.email}`)
+            },
+            {
+                path:'/update/:id',
+                element:<UpdatePost></UpdatePost>,
+                loader:({params}) => fetch(`http://localhost:5000/volunteers/${params.id}`)
             }
         ]
     }
