@@ -3,6 +3,7 @@ import NeedCard from "./NeedCard";
 
 const NeedPage = () => {
   const [needs, setNeeds] = useState([]);
+  const [filterSearch, setFilterSearch] = useState("");
   useEffect(() => {
     fetch("http://localhost:5000/volunteers")
       .then((res) => res.json())
@@ -10,29 +11,46 @@ const NeedPage = () => {
         setNeeds(data);
       });
   }, []);
+  // const handleSearch = (e) => {
+  //   e.preventDefault();
+  //   const search = e.target.value;
+  //   if (
+  //     search != "All" ||
+  //     search != "" ||
+  //     search != undefined ||
+  //     search != 'all'
+  //   ) {
+  //     fetch(`http://localhost:5000/volunteers/search/${search}`)
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         setNeeds(data);
+  //       });
+  //   }
+  //   if (search == " ") {
+  //     fetch("http://localhost:5000/volunteers")
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         setNeeds(data);
+  //       });
+  //   }
+  // };
   const handleSearch = (e) => {
     e.preventDefault();
-    const search = e.target.value;
-    if (
-      search != "All" ||
-      search != "" ||
-      search != undefined ||
-      search != 'all'
-    ) {
-      fetch(`http://localhost:5000/volunteers/search/${search}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setNeeds(data);
+    const search = e.target.value.trim();
+    if(search === "")
+      {
+        setFilterSearch(needs);
+      }
+      else
+      {
+        const filterNeeds = needs.filter((need) =>{
+          const postTitle = need.postTitle || "";
+          return postTitle.toLowerCase().includes(search.toLowerCase());
         });
-    }
-    if (search == "") {
-      fetch("http://localhost:5000/volunteers")
-        .then((res) => res.json())
-        .then((data) => {
-          setNeeds(data);
-        });
-    }
-  };
+        const filteredNeeds = filterNeeds;
+        setFilterSearch(filteredNeeds);
+      }
+  }
   return (
     <div className="font-poppins">
       <div className="mt-10">
@@ -72,7 +90,7 @@ const NeedPage = () => {
           All Available Volunteer Post
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 px-2 md:px-6">
-          {needs.map((need) => (
+          {filterSearch.map((need) => (
             <NeedCard key={need._id} need={need}></NeedCard>
           ))}
         </div>
