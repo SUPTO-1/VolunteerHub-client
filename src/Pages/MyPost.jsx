@@ -3,6 +3,7 @@ import { CiTimer } from "react-icons/ci";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 const MyPost = ({post,posts,setPosts}) => {
+   // console.log(post);
     const {_id,postTitle,thumbnail,description,location,date} = post;
     //console.log(thumbnail);
     const handleDelete = (_id) =>{
@@ -58,9 +59,9 @@ const MyPost = ({post,posts,setPosts}) => {
                 </div>
             </div>
             <div className="flex justify-between mt-5">
-               <button onClick={()=>handleDelete(_id)} className="btn px-10 mt-5 bg-purple-400">Delete</button>
-               <Link to={`/update/${_id}`}><button className="btn px-10 mt-5 bg-purple-400">Update</button></Link>
-               <Link to={`/details/${_id}`}><button className="btn px-10 mt-5 bg-purple-400">Details</button></Link>
+               <button onClick={()=>handleDelete(_id)} className="btn md:px-10 mt-5 bg-purple-400">Delete</button>
+               <Link to={`/update/${_id}`}><button className="btn md:px-10 mt-5 bg-purple-400">Update</button></Link>
+               <Link to={`/details/${_id}`}><button className="btn md:px-10 mt-5 bg-purple-400">Details</button></Link>
             </div>
         </div>
         </div>
