@@ -9,11 +9,13 @@ import AddVolunteer from "../Pages/AddVolunteer";
 import DetailsPage from "../Pages/DetailsPage";
 import BeAVolunteer from "../Pages/BeAVolunteer";
 import UpdatePost from "../Pages/UpdatePost";
+import Error from "../Error/Error";
 
 const routes = createBrowserRouter([
     {
         path: "/",
         element:<Root></Root>,
+        errorElement:<Error></Error>,
         children: [
             {
                 path: "/",
