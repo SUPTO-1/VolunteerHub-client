@@ -6,7 +6,7 @@ import Swal from 'sweetalert2'
 const BeAVolunteer = () => {
     const {user} = useContext(AuthContext);
     const newUser = useLoaderData();
-    const {postTitle,thumbnail , organizationName , organizationEmail , volunteers , category , date ,location , description} = newUser;
+    const {_id,postTitle,thumbnail , organizationName , organizationEmail , volunteers , category , date ,location , description} = newUser;
     const handleRequest = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -67,6 +67,17 @@ const BeAVolunteer = () => {
         // update volunteer database
 
 
+        fetch(`http://localhost:5000/volunteers/requests/${_id}`,{
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newVolunteer)
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+        })
 
 
     }
