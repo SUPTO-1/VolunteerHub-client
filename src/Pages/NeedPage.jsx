@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import NeedCard from "./NeedCard";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 
 const NeedPage = () => {
   const [needs, setNeeds] = useState([]);
@@ -169,9 +170,8 @@ const NeedPage = () => {
                       <td className="font-medium md:text-lg">{need.location}</td>
                       <td className="font-medium md:text-lg">{need.date}</td>
                       <th>
-                        <button className="btn btn-primary btn-xs md:btn-sm">
-                          details
-                        </button>
+                        <Link to={`/details/${need._id}`}>
+                          <button className="btn btn-primary btn-xs md:btn-sm">Details</button></Link>
                       </th>
                     </tr>
                   );
