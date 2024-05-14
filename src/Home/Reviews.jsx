@@ -8,7 +8,7 @@ const Reviews = () => {
       <h2 className="text-3xl font-semibold text-poppins text-center mt-10">
         Top Reviews
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         <div className="md:flex gap-10 mt-10 bg-[#d3dae4] p-5 rounded-lg shadow-lg">
           <div className="">
             <img className="rounded-full" src={first} alt="" />

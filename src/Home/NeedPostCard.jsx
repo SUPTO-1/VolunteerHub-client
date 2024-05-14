@@ -12,7 +12,7 @@ const NeedPostCard = () => {
     return (
         <div>
             <h2 className="text-3xl font-semibold text-poppins text-center mt-10 mb-10">Volunteer Need Posts</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:px-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:px-6">
                 {
                     sortPosts.slice(0,6).map(sortPost=><NeedPostCardSingle key={sortPost._id} sortPost={sortPost}></NeedPostCardSingle>)
                 }
