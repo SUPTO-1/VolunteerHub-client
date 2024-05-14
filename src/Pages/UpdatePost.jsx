@@ -38,7 +38,7 @@ const UpdatePost = () => {
         //update data to server
 
 
-        fetch(`http://localhost:5000/volunteers/${_id}`,{
+        fetch(`https://volunteer-hub-server-eight.vercel.app/volunteers/${_id}`,{
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

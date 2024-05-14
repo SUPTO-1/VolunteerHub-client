@@ -10,6 +10,7 @@ import DetailsPage from "../Pages/DetailsPage";
 import BeAVolunteer from "../Pages/BeAVolunteer";
 import UpdatePost from "../Pages/UpdatePost";
 import Error from "../Error/Error";
+import PrivateRoute from "./PrivateRoute";
 
 const routes = createBrowserRouter([
     {
@@ -35,31 +36,31 @@ const routes = createBrowserRouter([
             },
             {
                 path:'/manage',
-                element:<ManageVolunteer></ManageVolunteer>
+                element:<PrivateRoute><ManageVolunteer></ManageVolunteer></PrivateRoute>
             },
             {
                 path:'/add',
-                element:<AddVolunteer></AddVolunteer>
+                element:<PrivateRoute><AddVolunteer></AddVolunteer></PrivateRoute>
             },
             {
                 path:'/details/:id',
-                element:<DetailsPage></DetailsPage>,
-                loader:({params}) => fetch(`http://localhost:5000/volunteers/${params.id}`)
+                element:<PrivateRoute><DetailsPage></DetailsPage></PrivateRoute>,
+                loader:({params}) => fetch(`https://volunteer-hub-server-eight.vercel.app/volunteers/${params.id}`)
             },
             {
                 path:'/be-a-volunteer/:id',
-                element:<BeAVolunteer></BeAVolunteer>,
-                loader:({params}) => fetch(`http://localhost:5000/volunteers/${params.id}`)
+                element:<PrivateRoute><BeAVolunteer></BeAVolunteer></PrivateRoute>,
+                loader:({params}) => fetch(`https://volunteer-hub-server-eight.vercel.app/volunteers/${params.id}`)
             },
             {
                 path:'/manage/:email',
-                element:<ManageVolunteer></ManageVolunteer>,
-                loader:({params}) => fetch(`http://localhost:5000/volunteers/user/${params.email}`)
+                element:<PrivateRoute><ManageVolunteer></ManageVolunteer></PrivateRoute>,
+                loader:({params}) => fetch(`https://volunteer-hub-server-eight.vercel.app/volunteers/user/${params.email}`)
             },
             {
                 path:'/update/:id',
-                element:<UpdatePost></UpdatePost>,
-                loader:({params}) => fetch(`http://localhost:5000/volunteers/${params.id}`)
+                element:<PrivateRoute><UpdatePost></UpdatePost></PrivateRoute>,
+                loader:({params}) => fetch(`https://volunteer-hub-server-eight.vercel.app/volunteers/${params.id}`)
             }
         ]
     }

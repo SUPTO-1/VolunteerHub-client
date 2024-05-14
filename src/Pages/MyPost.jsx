@@ -17,7 +17,7 @@ const MyPost = ({post,posts,setPosts}) => {
             confirmButtonText: "Yes, delete it!"
           }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/volunteers/${_id}`,{
+                fetch(`https://volunteer-hub-server-eight.vercel.app/volunteers/${_id}`,{
                     method:"DELETE"
                 })
                 .then(res=>res.json())

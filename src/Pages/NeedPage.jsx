@@ -5,7 +5,7 @@ const NeedPage = () => {
   const [needs, setNeeds] = useState([]);
   const [filterSearch, setFilterSearch] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/volunteers")
+    fetch("https://volunteer-hub-server-eight.vercel.app/volunteers")
       .then((res) => res.json())
       .then((data) => {
         setNeeds(data);
@@ -21,14 +21,14 @@ const NeedPage = () => {
   //     search != undefined ||
   //     search != 'all'
   //   ) {
-  //     fetch(`http://localhost:5000/volunteers/search/${search}`)
+  //     fetch(`https://volunteer-hub-server-eight.vercel.app/volunteers/search/${search}`)
   //       .then((res) => res.json())
   //       .then((data) => {
   //         setNeeds(data);
   //       });
   //   }
   //   if (search == " ") {
-  //     fetch("http://localhost:5000/volunteers")
+  //     fetch("https://volunteer-hub-server-eight.vercel.app/volunteers")
   //       .then((res) => res.json())
   //       .then((data) => {
   //         setNeeds(data);

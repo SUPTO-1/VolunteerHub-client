@@ -13,7 +13,7 @@ const MyRequestPost = ({request , volunteerRequest , setVolunteerRequest}) => {
             confirmButtonText: "Yes, Cancel it!"
           }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/requests/${_id}`,{
+                fetch(`https://volunteer-hub-server-eight.vercel.app/requests/${_id}`,{
                     method:"DELETE"
                 })
                 .then(res=>res.json())

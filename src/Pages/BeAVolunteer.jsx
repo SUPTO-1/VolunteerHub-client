@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 import joinUs from '../../public/images/needYou.jpg';
 import Swal from 'sweetalert2'
@@ -11,6 +11,8 @@ const BeAVolunteer = () => {
         setNewUser(newUser1);
     },[newUser1]);
     const {_id,postTitle,thumbnail , organizationName , organizationEmail , volunteers , category , date ,location , description} = newUser;
+    const navigate = useNavigate();
+    const from = "/need";
     const handleRequest = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -46,7 +48,7 @@ const BeAVolunteer = () => {
 
         //send data to request server
 
-        fetch('http://localhost:5000/requests',{
+        fetch('https://volunteer-hub-server-eight.vercel.app/requests',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -71,7 +73,7 @@ const BeAVolunteer = () => {
         // update volunteer database
 
 
-        fetch(`http://localhost:5000/volunteers/requests/${_id}`,{
+        fetch(`https://volunteer-hub-server-eight.vercel.app/volunteers/requests/${_id}`,{
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -82,6 +84,7 @@ const BeAVolunteer = () => {
         .then(data => {
           setNewUser(data);
           console.log(data);
+          navigate(from);
         })
 
 

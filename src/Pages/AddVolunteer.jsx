@@ -36,7 +36,7 @@ const AddVolunteer = () => {
 
         //send data to server
 
-        fetch('http://localhost:5000/volunteers',{
+        fetch('https://volunteer-hub-server-eight.vercel.app/volunteers',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

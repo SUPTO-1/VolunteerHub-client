@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const NeedPostCard = () => {
     const [sortPosts , setSortPosts] = useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/volunteers/sort')
+        fetch('https://volunteer-hub-server-eight.vercel.app/volunteers/sort')
         .then(res=>res.json())
         .then(data=>setSortPosts(data))
     },[])

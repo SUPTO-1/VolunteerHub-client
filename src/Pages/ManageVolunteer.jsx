@@ -8,12 +8,12 @@ const ManageVolunteer = () => {
   const [posts, setPosts] = useState([]);
   const [volunteerRequest, setVolunteerRequest] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/volunteers/user/${email}`)
+    fetch(`https://volunteer-hub-server-eight.vercel.app/volunteers/user/${email}`)
       .then((res) => res.json())
       .then((data) => setPosts(data));
   }, []);
   useEffect(() => {
-    fetch(`http://localhost:5000/requests/${email}`)
+    fetch(`https://volunteer-hub-server-eight.vercel.app/requests/${email}`)
       .then((res) => res.json())
       .then((data) => setVolunteerRequest(data));
   }, []);
