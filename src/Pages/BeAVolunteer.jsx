@@ -1,11 +1,15 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 import joinUs from '../../public/images/needYou.jpg';
 import Swal from 'sweetalert2'
 const BeAVolunteer = () => {
     const {user} = useContext(AuthContext);
-    const newUser = useLoaderData();
+    const newUser1= useLoaderData();
+    const [newUser, setNewUser] = useState(newUser1);
+    useEffect(()=>{
+        setNewUser(newUser1);
+    },[newUser1]);
     const {_id,postTitle,thumbnail , organizationName , organizationEmail , volunteers , category , date ,location , description} = newUser;
     const handleRequest = (e) => {
         e.preventDefault();
@@ -76,6 +80,7 @@ const BeAVolunteer = () => {
         })
         .then(res => res.json())
         .then(data => {
+          setNewUser(data);
           console.log(data);
         })
 
