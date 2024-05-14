@@ -1,11 +1,12 @@
 import first from "../../public/images/review1.png";
 import second from "../../public/images/review2.png";
 import third from "../../public/images/review3.png";
+
 const Reviews = () => {
   return (
     <div className="p-6">
       <h2 className="text-3xl font-semibold text-poppins text-center mt-10">
-        Reviews
+        Top Reviews
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         <div className="md:flex gap-10 mt-10 bg-[#d3dae4] p-5 rounded-lg shadow-lg">
