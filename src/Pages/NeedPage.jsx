@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import NeedCard from "./NeedCard";
+import { Helmet } from "react-helmet";
 
 const NeedPage = () => {
   const [needs, setNeeds] = useState([]);
@@ -54,6 +55,9 @@ const NeedPage = () => {
   }
   return (
     <div className="font-poppins">
+      <Helmet>
+        <title>Need Page</title>
+      </Helmet>
       <div className="mt-10">
       <fieldset className="w-full md:ml-[45%] space-y-1 dark:text-gray-800">
   <label htmlFor="Search" className="hidden">

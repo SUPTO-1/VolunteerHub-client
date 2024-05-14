@@ -2,7 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 import joinUs from '../../public/images/needYou.jpg';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import { Helmet } from "react-helmet";
 const BeAVolunteer = () => {
     const {user} = useContext(AuthContext);
     const newUser1= useLoaderData();
@@ -45,7 +46,7 @@ const BeAVolunteer = () => {
             status
         }
         console.log(newVolunteer);
-        if(parseInt(volunteers) === 0)
+        if(parseInt(volunteers) <= 0)
           {
             Swal.fire({
               title: 'error!',
@@ -101,6 +102,9 @@ const BeAVolunteer = () => {
     }
     return (
         <div className="mx-2 md:mx-8 font-roboto mt-24 lg:flex  gap-5 border-2 rounded-lg shadow-xl">
+          <Helmet>
+            <title>Be A Volunteer</title>
+          </Helmet>
       <div className="flex-1 md:rounded-r-[150px] rounded-r-lg ">
         <img src={joinUs} alt="" />
       </div>

@@ -3,11 +3,15 @@ import { IoLocationOutline } from "react-icons/io5";
 import { CiTimer } from "react-icons/ci";
 import men from '../../public/images/men.png';
 import { MdOutlineMail } from "react-icons/md";
+import { Helmet } from "react-helmet";
 const DetailsPage = () => {
     const newNeed = useLoaderData();
     const { postTitle , category , thumbnail , description , location, date , organizationName , organizationEmail , volunteers } = newNeed;
     return (
         <div>
+            <Helmet>
+                <title>Details</title>
+            </Helmet>
             <h2 className="text-3xl font-semibold text-poppins text-center mt-10">Details of {category}</h2>
             <div className=" p-2 md:p-10 w-3/4 mx-auto font-montserrat mt-10 border-2 rounded-lg shadow-lg mb-5">
         <div className="md:flex gap-10">

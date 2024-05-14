@@ -5,6 +5,7 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import Swal from 'sweetalert2'
 import "react-datepicker/dist/react-datepicker.css";
+import { Helmet } from 'react-helmet';
 const AddVolunteer = () => {
     const {user} = useContext(AuthContext);
     const [startDate, setStartDate] = useState(new Date());
@@ -59,6 +60,9 @@ const AddVolunteer = () => {
     }
   return (
     <div className="mx-2 md:mx-8 font-roboto mt-24 lg:flex  gap-5 border-2 rounded-lg shadow-xl">
+      <Helmet>
+        <title>Add Volunteer</title>
+      </Helmet>
       <div className="flex-1 md:rounded-r-[150px] rounded-r-lg ">
         <img src={joinUs} alt="" />
       </div>

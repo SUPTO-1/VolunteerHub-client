@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import MyPost from "./MyPost";
 import { useEffect, useState } from "react";
 import MyRequestPost from "./MyRequestPost";
+import { Helmet } from "react-helmet";
 
 const ManageVolunteer = () => {
   const { email } = useParams();
@@ -20,6 +21,9 @@ const ManageVolunteer = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>My Posts</title>
+      </Helmet>
       <h2 className="text-3xl font-semibold text-poppins text-center mt-10 mb-10">
         My Posts
       </h2>
