@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 import joinUs from '../../public/images/needYou.jpg';
 import Swal from 'sweetalert2'
@@ -45,6 +45,16 @@ const BeAVolunteer = () => {
             status
         }
         console.log(newVolunteer);
+        if(parseInt(volunteers) === 0)
+          {
+            Swal.fire({
+              title: 'error!',
+              text: 'Sorry No volunteers slot are available for this post',
+              icon: 'error',
+              confirmButtonText: 'Okay'
+            })
+            return;
+          }
 
         //send data to request server
 
