@@ -18,33 +18,7 @@ Visit our live site at [VolunteerHub](https://volunteerhub-f67d8.web.app/)
 - **React Slick**: For creating responsive and touch-friendly carousels.
 - **Mamba UI**: Utilized for designing user-friendly interfaces.
 - **Daisy UI**: For elegant and customizable UI components.
-
-## Project Structure
-```bash
-src/
-├── Home/
-│   └── Home.jsx
-├── Root/
-│   └── Root.jsx
-├── Login/
-│   └── Login.jsx
-├── SignUp/
-│   └── SignUp.jsx
-├── Pages/
-│   ├── NeedPage.jsx
-│   ├── ManageVolunteer.jsx
-│   ├── AddVolunteer.jsx
-│   ├── DetailsPage.jsx
-│   ├── BeAVolunteer.jsx
-│   └── UpdatePost.jsx
-├── Error/
-│   └── Error.jsx
-├── Routes/
-│   ├── PrivateRoute.jsx
-│   └── routes.js
-└── index.js
-
-## Cloning and Running Locally
+- ## Cloning and Running Locally
 
 If you wish to run EarthyCraft on your local machine, follow these steps:
 
@@ -78,4 +52,30 @@ If you wish to run EarthyCraft on your local machine, follow these steps:
     ```plaintext
     http://localhost:3000
     ```
+
+## Project Structure
+```bash
+src/
+├── Home/
+│   └── Home.jsx
+├── Root/
+│   └── Root.jsx
+├── Login/
+│   └── Login.jsx
+├── SignUp/
+│   └── SignUp.jsx
+├── Pages/
+│   ├── NeedPage.jsx
+│   ├── ManageVolunteer.jsx
+│   ├── AddVolunteer.jsx
+│   ├── DetailsPage.jsx
+│   ├── BeAVolunteer.jsx
+│   └── UpdatePost.jsx
+├── Error/
+│   └── Error.jsx
+├── Routes/
+│   ├── PrivateRoute.jsx
+│   └── routes.js
+└── index.js
+
 
