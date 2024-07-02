@@ -43,3 +43,39 @@ src/
 │   ├── PrivateRoute.jsx
 │   └── routes.js
 └── index.js
+
+## Cloning and Running Locally
+
+If you wish to run EarthyCraft on your local machine, follow these steps:
+
+### Prerequisites
+- Node.js installed on your machine
+- npm or yarn package manager installed
+
+### Installation
+
+1. **Clone the repository:**
+    ```bash
+    git clone https://github.com/SUPTO-1/VolunteerHub-server.git
+    ```
+
+2. **Navigate to the project directory:**
+    ```bash
+    cd volunteerhub
+    ```
+
+3. **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+4. **Start the development server:**
+    ```bash
+    npm start
+    ```
+
+5. **Open your browser and navigate to:**
+    ```plaintext
+    http://localhost:3000
+    ```
+
